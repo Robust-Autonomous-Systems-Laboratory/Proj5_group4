@@ -45,10 +45,6 @@ This project was run inside a Python virtual environment (`.venv`) to avoid Ubun
 ---
 
 ## 4. Setup Instructions (Step-by-Step)
-### 4.1 Go to project folder
-```bash
-cd ~/Proj5_group4
-
 
 ## Histogram Figures
 
@@ -60,3 +56,9 @@ cd ~/Proj5_group4
 
 ### 2.0 m Histogram
 ![2.0 m histogram](analysis/figures/hist_2m.png)
+
+
+### 4.1 Go to project folder
+```bash
+cd ~/Proj5_group4
+
