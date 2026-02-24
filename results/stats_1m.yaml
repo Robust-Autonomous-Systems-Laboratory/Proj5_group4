@@ -1,0 +1,49 @@
+bag_path: data/lidar_calibration_/lidar_calibration_1m
+analysis_parameters:
+  true_distance_m: 1.0
+  target_angle_rad: 0.0
+  angle_window_rad: 0.1
+  topic: /scan
+  bins: 50
+scan_metadata:
+  storage_id: mcap
+  topic: /scan
+  scan_messages: 612
+  valid_measurements: 1836
+  invalid_measurements_filtered: 0
+  angle_min: 0.021058453246951103
+  angle_max: 6.2768778800964355
+  angle_increment: 0.02662004344165325
+  range_min: 0.0
+  range_max: 100.0
+  n_ranges: 236
+  target_angle: 0.0
+  angle_window: 0.1
+  center_index: 0
+  half_width_index: 2
+  used_indices:
+  - 0
+  - 1
+  - 2
+statistics:
+  true_distance_m: 1.0
+  n_samples: 1836
+  mean_m: 1.0033725089107464
+  median_m: 1.003999948501587
+  std_pop_m: 0.0010138212532244896
+  std_sample_m: 0.00101409746117219
+  sigma_hit_estimate_m: 0.00101409746117219
+  bias_m: 0.0033725089107463635
+  min_m: 1.0010000467300415
+  max_m: 1.0049999952316284
+  q05_m: 1.0010000467300415
+  q95_m: 1.003999948501587
+  mad_m: 0.0
+  robust_sigma_from_mad_m: 0.0
+  outlier_count_gt_3sigma: 0
+  outlier_rate_gt_3sigma: 0.0
+notes:
+  sigma_hit_estimate_m: Estimated using sample standard deviation of valid measurements
+    in selected angular window.
+  bias_m: mean measurement - true distance
+  outlier_definition: measurement farther than 3*std from mean (using sample std)
