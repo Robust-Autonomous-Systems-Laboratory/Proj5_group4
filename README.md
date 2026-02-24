@@ -57,6 +57,17 @@ This project was run inside a Python virtual environment (`.venv`) to avoid Ubun
 ### 2.0 m Histogram
 ![2.0 m histogram](analysis/figures/hist_2m.png)
 
+## 3. Parameter Estimation and Results
+
+### 3.1 Summary Table
+
+| True Distance (m) | Mean Measured (m) | Sigma σ_hit (m) | Bias (m) | Samples (N) | Outliers (>3σ) | Outlier Rate (%) |
+|---|---:|---:|---:|---:|---:|---:|
+| 0.5 | 0.501861 | 0.016781 | +0.001861 | 1913 | 16 | 0.836 |
+| 1.0 | 1.003373 | 0.001014 | +0.003373 | 1836 | 0 | 0.000 |
+| 2.0 | 2.015235 | 0.002099 | +0.015235 | 1824 | 7 | 0.384 |
+
+
 
 ### 4.1 Go to project folder
 ```bash
