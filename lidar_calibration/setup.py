@@ -24,6 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'scan_calibration = lidar_calibration.calibration_node:main'
         ],
     },
 )
