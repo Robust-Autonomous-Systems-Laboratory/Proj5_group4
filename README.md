@@ -67,24 +67,7 @@ This project was run inside a Python virtual environment (`.venv`) to avoid Ubun
 | 1.0 | 1.003373 | 0.001014 | +0.003373 | 1836 | 0 | 0.000 |
 | 2.0 | 2.015235 | 0.002099 | +0.015235 | 1824 | 7 | 0.384 |
 
-## Reproduce Results
-
-From the project root:
-
-```bash
-# (1) ROS 2 environment
-source /opt/ros/jazzy/setup.bash
-
-# (2) Python virtual environment
-source .venv/bin/activate
-
-# (3) Run analysis for 0.5m / 1m / 2m and generate plots + YAML stats
-./run_all.sh
-
-# (4) Generate the summary table (Markdown)
-python3 analysis/make_summary_table.py
 
 ### 4.1 Go to project folder
 ```bash
 cd ~/Proj5_group4
-
