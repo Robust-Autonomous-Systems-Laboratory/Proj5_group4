@@ -13,8 +13,8 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='wbforney',
-    maintainer_email='wbforney@mtu.edu',
+    maintainer='neyje',
+    maintainer_email='evameh@mtu.edu',
     description='TODO: Package description',
     license='TODO: License declaration',
     extras_require={
@@ -24,7 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'scan_calibration = lidar_calibration.calibration_node:main'
+            'calibration_node = lidar_calibration.calibration_node:main',
         ],
     },
 )
