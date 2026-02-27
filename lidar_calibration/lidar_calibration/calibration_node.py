@@ -11,6 +11,9 @@ from sensor_msgs.msg import LaserScan
 from std_msgs.msg import Float64, String
 import yaml
 
+from rclpy.qos import QoSProfile, ReliabilityPolicy
+import rclpy.parameter
+from rclpy.parameter_event_handler import ParameterEventHandler 
 
 @dataclass
 class RunningStats:
@@ -52,6 +55,11 @@ class LidarCalibrationNode(Node):
         self.declare_parameter("results_path", "results/runtime_calibration.yaml")
         self.declare_parameter("use_median", False)  # average vs median inside window
 
+        #Allow for paramters to be updated on fly
+        self.handler = ParameterEventHandler(self)
+        self.event_callback_handle = self.handler.add_parameter_event_callback(callback=self.event_callback,)
+
+
         self.target_distance = float(self.get_parameter("target_distance").value)
         self.target_angle = float(self.get_parameter("target_angle").value)
         self.angle_window = float(self.get_parameter("angle_window").value)
@@ -66,7 +74,8 @@ class LidarCalibrationNode(Node):
         self.pub_stats = self.create_publisher(String, "/calibration/statistics", 10)
 
         # Subscriber
-        self.sub_scan = self.create_subscription(LaserScan, "/scan", self.scan_callback, 10)
+        subscriber_qos_profile = QoSProfile(depth=10, reliability=ReliabilityPolicy.BEST_EFFORT)
+        self.sub_scan = self.create_subscription(LaserScan, "/scan", self.scan_callback, subscriber_qos_profile)
 
         # Running stats
         self.range_stats = RunningStats()  # stats of z_meas
@@ -115,6 +124,22 @@ class LidarCalibrationNode(Node):
         for k in range(center - half, center + half + 1):
             idxs.append(k % n)
         return idxs
+    
+    #Update parameters when new ones are set 
+    def event_callback(self, parameter_event):
+        self.target_distance = float(self.get_parameter("target_distance").value)
+        self.target_angle = float(self.get_parameter("target_angle").value)
+        self.angle_window = float(self.get_parameter("angle_window").value)
+
+        self.publish_rate_hz = float(self.get_parameter("publish_rate_hz").value)
+        self.outlier_sigma_thresh = float(self.get_parameter("outlier_sigma_thresh").value)
+        self.results_path = str(self.get_parameter("results_path").value)
+        self.use_median = bool(self.get_parameter("use_median").value)
+
+
+
+
+
 
     def scan_callback(self, msg: LaserScan) -> None:
         self.total_scans += 1

@@ -104,5 +104,5 @@ ros2 param set /lidar_calibration_node target_distance "desired double value"
 ros2 param set /lidar_calibration_node target_angle "desired double value"
 ros2 param set /lidar_calibration_node angle_window "desired double value"
 ```
-A bag file can now be run using ros2 bag run "file_name", and the calibration_node will publish the live states and once the calibration_node is shutdown the live stats will be saved to a .yaml file.
+A bag file can now be run using ros2 bag run "file_name", and the calibration_node will publish the live stats. Once the calibration_node is shutdown, the live stats will be saved to a .yaml file.
 
