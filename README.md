@@ -77,7 +77,32 @@ The distribution shown in the 2.0 m histogram is a guassian distribution centere
 
 All three analyzed bag files are biased greater than the expected value by a small amount, leading us to believe that there was a measurement error made when setting up our turtlebot. All three models showed the Gaussian noise predicted by Thrun's Beam Model, but only the 0.5m data showed the unexpected short range readings. None of the analyzed scan data showed max range or random readings.
 
+## Usage instructions
 
-### 4.1 Go to project folder
+### Offline analysis instructions
+In the root of this directory, run:
 ```bash
-cd ~/Proj5_group4
+cd analysis
+python3 analyze_lidar_bag.py --bag "directory path to bag file" --true-distance "double value" --angle-window "double value" --target-angle "double value" --out-figure "figurename.png" --out-yaml "filename.yaml"
+```
+An example command used to generate the 0.5m histogram:
+```bash
+python3 analyze_lidar_bag.py --bag ~/proj5/data/lidar_calibration_/lidar_calibration_05m/ --true-distance 0.5  --target-angle 0 --angle-window 0.1 --out-figure figures/hist_05m.png --out-yaml ~/proj5/results/stats_05m.yaml
+```
+
+### ROS2 node instructions
+In the root of this directory, run:
+```bash
+source /opt/ros/jazzy/setup.bash
+colcon build
+source install/setup.bash
+ros2 run lidar_calibration calibration_node
+```
+In a new termminal, set the paramters target_distance, target_angle, and angle_window:
+```bash
+ros2 param set /lidar_calibration_node target_distance "desired double value"
+ros2 param set /lidar_calibration_node target_angle "desired double value"
+ros2 param set /lidar_calibration_node angle_window "desired double value"
+```
+A bag file can now be run using ros2 bag run "file_name", and the calibration_node will publish the live states and once the calibration_node is shutdown the live stats will be saved to a .yaml file.
+
