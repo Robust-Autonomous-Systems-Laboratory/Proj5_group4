@@ -30,7 +30,7 @@ This isolates a narrow forward-facing slice of the scan to estimate the distance
 
 ## 3. Environment / Dependencies
 ### System
-- Ubuntu (fill in your version if known)
+- Ubuntu 24.04 LTS
 - ROS 2 Jazzy
 - Python 3
 
@@ -66,6 +66,16 @@ This project was run inside a Python virtual environment (`.venv`) to avoid Ubun
 | 0.5 | 0.501861 | 0.016781 | +0.001861 | 1913 | 16 | 0.836 |
 | 1.0 | 1.003373 | 0.001014 | +0.003373 | 1836 | 0 | 0.000 |
 | 2.0 | 2.015235 | 0.002099 | +0.015235 | 1824 | 7 | 0.384 |
+
+### 3.2 Parameter Estimation Analysis
+#### 0.5 m 
+The distribution shown in the 0.5 m histogram is a guassian distribution centered on 0.501861, with a small percentage of outliers found inbetween 0.2 and 0.5 meters.
+#### 1.0 m
+The distribution shown in the 1.0 m histogram is a guassian distribution centered on 1.003373, with no outliers.
+#### 2.0 m
+The distribution shown in the 2.0 m histogram is a guassian distribution centered on 2.015235, with a small percentage of outliers on both sides of the distribution.
+
+All three analyzed bag files are biased greater than the expected value by a small amount, leading us to believe that there was a measurement error made when setting up our turtlebot. All three models showed the Gaussian noise predicted by Thrun's Beam Model, but only the 0.5m data showed the unexpected short range readings. None of the analyzed scan data showed max range or random readings.
 
 
 ### 4.1 Go to project folder
